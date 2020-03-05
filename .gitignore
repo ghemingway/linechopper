@@ -1,6 +1,2 @@
-data/*
 .idea/*
 node_modules/*
-public/js/*
-config/*
-/src/servers/api/ssr/ssr_packed.js

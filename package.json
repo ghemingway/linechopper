@@ -22,5 +22,8 @@
   "homepage": "https://github.com/ghemingway/linechopper#readme",
   "dependencies": {
     "lodash": "^4.17.15"
+  },
+  "directories": {
+    "lib": "src"
   }
 }

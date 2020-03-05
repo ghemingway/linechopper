@@ -55,9 +55,9 @@ const MORA = new Schema(
     [6, 7], // Blank
     [13, 3, TString, Req, StartLat, "startLat"], // 5.141 Starting Latitude
     [16, 4, TString, Req, StartLon, "startLon"], // 5.142 Starting Longitude
-    [120, 3], // Blank
-    [123, 5, Number, Req, "recNum"], // 5.31 File Record Number
-    [128, 4, Number, Req, "cycle"] // 5.32 Cycle
+    [20, 3], // Blank
+    [23, 5, Number, Req, "recNum"], // 5.31 File Record Number
+    [28, 4, Number, Req, "cycle"] // 5.32 Cycle
   ]
 );
 ```
