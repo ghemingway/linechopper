@@ -11,9 +11,26 @@ parse()
 getState()
 getCount()
 
-#### Switch
+### Switch
 
-new Switch(options)
+Switch is an easy way to choose what type of object the line represents.
+
+##### Switch Usage
+
+```new Switch(options)```
+
+##### Switch Options
+
+A number of options are available for each Switch object.  These can aid in the processing of more complex line structures
+
+* ```is: line => bool```
+* ```filter: (state, line, i, prevLines) => bool```
+* ```pre: (state, line, i, prevLines) => {}```
+* ```post: (state, record) => {}```
+* ```cases: { id: (state, line, i, prevLines) => {} }```
+* ```def: (state, line, i, prevLines) => {}```
+
+##### Switch Example
 
 ```JS
 const SampleSwitch = new Switch({
@@ -28,17 +45,28 @@ const SampleSwitch = new Switch({
   }
 });
 ```
+### Schema
 
-is: line => bool
-filter: (state, line, i, prevLines) => bool
-pre: (state, line, i, prevLines) => {}
-post: (state, record) => {}
-cases: { id: (state, line, i, prevLines) => {} }
-def: (state, line, i, prevLines) => {}
+Schema is the core class used for individual types of objects.
 
-#### Schema
+##### Schema Usage
 
-new Schema(options, elements)
+```new Schema(options, elements)```
+
+##### Schema Options
+
+A number of options are available for each Schema object.  These can aid in the processing of more complex line structures
+
+* ```name: {String} Schema name - helps with debugging output```
+* ```desc: {String} Schema description - helps with documentation```
+* ```allowDuplicateNames: {Boolean: default=false}```
+* ```initialState: {Object} Initial state object```
+* ```filter: (): Return false to not consider```
+* ```pre: (state, line)```
+* ```post: (state, line, i, prevLines, obj)```
+* ```noGaps: {Boolean: default=true```
+
+##### Schema Example
 
 ```JS
 const MORA = new Schema(
@@ -46,7 +74,9 @@ const MORA = new Schema(
     name: "MORA",
     desc: "4.1.9.1",
     initialState: { vals: [] },
-    post
+    post: (state, line, i, prevLines, obj) => {
+        state.foo = obj;
+    }
   },
   [
     [0, 1, String, ["S", "T"], Skip, "recordType"], // 5.2 Record Type
