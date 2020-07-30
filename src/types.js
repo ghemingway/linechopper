@@ -11,9 +11,7 @@ const JsonObj = (value, record, next) => {
   try {
     next(JSON.parse(value));
   } catch (err) {
-    console.log("Unexpected JSON parsing error");
-    console.log(err);
-    process.exit(-1);
+    throw new Error(`Unexpected JSON parsing error: ${err}`);
   }
 };
 
@@ -33,7 +31,6 @@ const Number = (value, record, next) => {
  * @param value
  * @param record
  * @param next
- * @returns {String}
  */
 const String = (value, record, next) => next(value);
 
@@ -42,7 +39,6 @@ const String = (value, record, next) => next(value);
  * @param value
  * @param record
  * @param next
- * @returns {String}
  */
 const TString = (value, record, next) => {
   value = value.trim();
@@ -54,17 +50,54 @@ const TString = (value, record, next) => {
  * @param value
  * @param record
  * @param next
- * @returns {String}
  */
 const TLString = (value, record, next) => {
   value = value.trim().toLowerCase();
   next(value);
-}
+};
+
+/***
+ * Parse a textual date string into a date type
+ * @param val
+ * @param rec
+ * @param next
+ */
+const DateStr = (val, rec, next) => {
+  next(new Date(val));
+};
+
+/***
+ * Parse string to boolean value (yes/no || y/n)
+ * @param val
+ * @param rec
+ * @param next
+ */
+const BoolYN = (val, rec, next) => {
+  if (typeof val !== "string") throw new Error("Not string type");
+  val = val.trim().toLowerCase();
+  next(val === "y" || val === "yes");
+};
+
+/***
+ * Parse string to boolean value (true/false || t/f)
+ * @param val
+ * @param rec
+ * @param next
+ * @constructor
+ */
+const BoolTF = (val, rec, next) => {
+  if (typeof val !== "string") throw new Error("Not string type");
+  val = val.trim().toLowerCase();
+  next(val === "t" || val === "true");
+};
 
 module.exports = {
   JsonObj,
   Number,
   String,
   TString,
-  TLString
+  TLString,
+  DateStr,
+  BoolYN,
+  BoolTF
 };

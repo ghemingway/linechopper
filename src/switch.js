@@ -2,13 +2,15 @@
 "use strict";
 
 module.exports.Switch = function Switch(options) {
-  const { is, filter, pre, post, cases, def } = options;
+  const { is, context, filter, pre, post, cases, def, final } = options;
   const _isFunc = is ? is : line => line;
+  const _context = context ? context : undefined;
   const _filterFunc = filter ? filter : () => true;
   const _preFunc = pre ? pre : undefined;
   const _postFunc = post ? post : undefined;
   const _cases = cases ? cases : {};
   const _default = def ? def : () => {};
+  const _final = final ? final : state => state;
   let notFound = 0;
   // TODO: Validate cases
 

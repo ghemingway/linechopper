@@ -2,9 +2,9 @@
 "use strict";
 
 const { addAirway, CardinalDirections, SkipBnd, SkipZero } = require("./types");
-const { Schema } = require("linechopper/src/schema");
-const { Number, TString, TLString } = require("linechopper/src/types");
-const { Opt, Skip } = require("linechopper/src/validators");
+const { Schema } = require("../../src/schema");
+const { Number, TString, TLString } = require("../../src/types");
+const { Opt, Skip } = require("../../src/validators");
 
 /***
  * Airway 1 line type
