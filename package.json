@@ -1,6 +1,6 @@
 {
   "name": "linechopper",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Fixed-width line parsing",
   "main": "src/index.js",
   "scripts": {

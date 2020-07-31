@@ -63,6 +63,7 @@ const TLString = (value, record, next) => {
  * @param next
  */
 const DateStr = (val, rec, next) => {
+  if (!val || val === "") return next(undefined);
   next(new Date(val));
 };
 

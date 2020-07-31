@@ -59,7 +59,11 @@ module.exports.Schema = function Schema(options, elementsArray) {
       throw new Error(`Line ${i}: Gap in sequence found`);
     // Validate second parameter type
     if (typeof el[1] !== "number")
-      throw new Error(`Line ${i}: Second param (${el[1]}) must be a number`);
+      throw new Error(
+        `Line ${i}: Second param (${el[1]}) must be a number: ${
+          el[el.length - 1]
+        }`
+      );
     // Where does this element end
     lastEnd = lastStart += el[1];
 
